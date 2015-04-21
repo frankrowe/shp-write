@@ -41,7 +41,7 @@ function write(rows, geometry_type, geometries, callback) {
         TYPE);
 
     shpView.setInt32(24, shpLength / 2);
-    shxView.setInt32(24, (50 + geometries.length * 4));
+    shxView.setInt32(24, shxLength / 2);
 
     var dbfBuf = dbf.structure(rows);
 
