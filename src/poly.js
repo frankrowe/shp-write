@@ -9,9 +9,8 @@ module.exports.write = function writePoints(geometries, extent, shpView, shxView
     geometries.forEach(writePolyLine);
 
     function writePolyLine(coordinates, i) {
-
         var flattened = justCoords(coordinates),
-            contentLength = (flattened.length * 16) + 48;
+            contentLength = (flattened.length * 16) + 56;
 
         var featureExtent = flattened.reduce(function(extent, c) {
             return ext.enlarge(extent, c);
@@ -47,7 +46,7 @@ module.exports.write = function writePoints(geometries, extent, shpView, shxView
 module.exports.shpLength = function(geometries) {
     return (geometries.length * 56) +
         // points
-        (justCoords(geometries).length * 16);
+        (justCoords(geometries).length * 16) + 8;
 };
 
 module.exports.shxLength = function(geometries) {
